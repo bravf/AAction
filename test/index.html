@@ -1,0 +1,19 @@
+<div
+    data-action-0='ie6Console' data-param-0='{"keyword":"我是ie6"}'
+    data-action-1='chromeConsole' data-param-1='{"hello":"world"}'>
+    点我
+</div>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="../src/AAction.js"></script>
+<script type="text/javascript">
+AAction.add({
+    'ie6Console' : function (param){
+        console.log(param)
+        alert(param.keyword)
+    },
+    'chromeConsole' : function (param){
+        console.log(param)
+    }
+})
+</script>
