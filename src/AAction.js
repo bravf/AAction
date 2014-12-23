@@ -12,6 +12,7 @@ var AAction = function (){
     function trigger(actionName, actionParam, context){
         if (!(actionName in actionTable)){
             printLog('Error:"' + actionName + '"未定义')
+            return
         }
         return actionTable[actionName].call(window||context, actionParam)
     }
