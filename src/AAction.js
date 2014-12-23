@@ -10,30 +10,36 @@ var AAction = function (){
     }
 
     function trigger(actionName, actionParam, context){
+        if (!(actionName in actionTable)){
+            printLog('Error:"' + actionName + '"未定义')
+        }
         return actionTable[actionName].call(window||context, actionParam)
+    }
+
+    function printLog(str){
+        if (window.console && console.log){
+            console.log(str)
+        }
     }
 
     function toJSON(str){
         var obj
         var fn
 
-        if ($.parseJSON){
-            fn = $.parseJSON
+        if (window.JSON && JSON.parse){
+            fn = JSON.parse
         }
         else {
-            if (window.JSON && JSON.parse){
-                fn = JSON.parse
-            }
+            fn = $.parseJSON
         }
 
         try{
             obj = fn(str)
         }
         catch (ex){
-            if (window.console){
-                console.error(str+' json化失败')
-            }
+            printLog('Error:"' + str + '"JSON化失败!')
         }
+
         return obj
     }
 
@@ -47,6 +53,11 @@ var AAction = function (){
                 break
             }
             var actionParam = $dom.attr(paramSelector + '-' + counter)
+
+            if (actionParam === undefined){
+                actionParam = '{}'
+            }
+
             actions.push({
                 name : actionName,
                 param : toJSON(actionParam)
