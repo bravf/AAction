@@ -1,3 +1,7 @@
+/*
+    Copyright (c) 2014 bravf(bravfing@126.com)
+*/
+
 var AAction = function (){
     var AAction = {}
 
