@@ -28,8 +28,7 @@ var AAction = function (){
     }
 
     function toJSON(str){
-        var obj
-        var fn
+        var obj, fn
 
         if (window.JSON && JSON.parse){
             fn = JSON.parse
